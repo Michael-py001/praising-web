@@ -31,4 +31,4 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SERVER_PRIVATE_KEY }}
           source: dist/
-          target: /home/ecs-user/parising-web/
+          target: /home/ecs-user/praising-web/
