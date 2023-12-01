@@ -19,6 +19,7 @@
     "current-device": "0.10.2",
     "dayjs": "^1.11.8",
     "echarts": "^5.4.2",
+    "echarts-wordcloud": "^2.1.0",
     "lodash": "4.17.21",
     "mitt": "2.1.0",
     "normalize.css": "8.0.1",
