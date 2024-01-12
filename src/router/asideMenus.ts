@@ -52,4 +52,19 @@ export default [
       },
     ],
   },
+  {
+    path: '/pin',
+    title: '沸点管理',
+    icon: AlertFilled,
+    children: [
+      {
+        path: '/pin/articleStar',
+        title: '沸点概览',
+      },
+      {
+        path: '/pin/template',
+        title: '模板管理',
+      },
+    ],
+  },
 ];

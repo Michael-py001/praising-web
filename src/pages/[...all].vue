@@ -1,5 +1,5 @@
 <script lang="ts" setup name="404">
-import { ref } from 'vue';
+import { ref, onUnmounted } from 'vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
@@ -13,6 +13,10 @@ const countdownInterval = setInterval(() => {
     clearInterval(countdownInterval);
   }
 }, 1000);
+
+onUnmounted(() => {
+  clearInterval(countdownInterval);
+});
 </script>
 
 <template>

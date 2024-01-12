@@ -1,4 +1,4 @@
-import request, { Response } from '@/libs/request';
+import request, { Response, ListResult } from '@/libs/request';
 
 export interface KeywordResult {
   id: number;
@@ -53,6 +53,41 @@ export function blockKeyword(id: number, isBlock: boolean) {
     params: {
       id,
       isBlock,
+    },
+  });
+}
+
+export interface PagePin {
+  id: number;
+  content: string;
+  isTemplate: boolean;
+}
+
+// 分页获取沸点列表
+export function getPinPage(
+  page: number = 1,
+  pageSize: number = 20,
+  isTemplate: boolean,
+) {
+  return request<Response<ListResult<PagePin>>>({
+    method: 'get',
+    url: '/pin/listPage',
+    params: {
+      page,
+      pageSize,
+      isTemplate,
+    },
+  });
+}
+
+// 设置模板状态
+export function setTemplate(id: number, isTemplate: boolean) {
+  return request<Response<boolean>>({
+    method: 'get',
+    url: '/pin/setTemplate',
+    params: {
+      id,
+      isTemplate,
     },
   });
 }
