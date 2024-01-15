@@ -27,8 +27,18 @@
         </span>
         {{ record[column.key] }}
       </template>
-      <template v-else-if="column.key === 'createdAt'">
-        {{ dayjs(record[column.key]).format('YYYY-MM-DD HH:mm:ss') }}
+      <template v-else-if="column.key === 'type'">
+        <a-radio-group
+          v-model:value="record.type"
+          button-style="solid"
+          size="small"
+          @change="handleTypeChange(record, $event)"
+        >
+          <a-radio-button value="好评">好评</a-radio-button>
+          <a-radio-button value="废话">废话</a-radio-button>
+          <a-radio-button value="差评">差评</a-radio-button>
+          <a-radio-button value="爬虫">爬虫</a-radio-button>
+        </a-radio-group>
       </template>
       <template v-else-if="column.key === 'action'">
         <a-space :size="0">
@@ -59,8 +69,7 @@
   <EditForm ref="editFormRef" />
 </template>
 <script setup lang="ts">
-import dayjs from 'dayjs';
-import { notification } from 'ant-design-vue';
+import { notification, message } from 'ant-design-vue';
 import { DislikeTwoTone, HeartTwoTone, MehTwoTone } from '@ant-design/icons-vue';
 import useStore from '../store';
 import columns from './columns';
@@ -83,10 +92,25 @@ function handleEdit(record: Comment) {
   editFormRef.value?.showModal(record);
 }
 
-function handleEnableChange(record: Comment, checked: boolean) {
-  updateComment({
+async function handleEnableChange(record: Comment, checked: boolean) {
+  await updateComment({
     id: record.id,
     enable: checked,
+  });
+  message.success({
+    content: '更新成功',
+  });
+}
+
+async function handleTypeChange(record: Comment, e: any) {
+  record.enable = true;
+  await updateComment({
+    id: record.id,
+    type: e.target.value,
+    enable: record.enable,
+  });
+  message.success({
+    content: '更新成功',
   });
 }
 

@@ -15,6 +15,7 @@
           <a-radio-button value="好评">好评</a-radio-button>
           <a-radio-button value="废话">废话</a-radio-button>
           <a-radio-button value="差评">差评</a-radio-button>
+          <a-radio-button value="爬虫">爬虫</a-radio-button>
         </a-radio-group>
       </a-form-item>
       <a-form-item label="状态" name="enable">

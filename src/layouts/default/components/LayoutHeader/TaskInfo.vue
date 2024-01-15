@@ -138,7 +138,7 @@ async function fetchData() {
   });
   setTimeout(async () => {
     await fetchData();
-  }, 2000);
+  }, 10000);
 }
 
 function computedTaskName(name: string) {

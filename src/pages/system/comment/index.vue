@@ -19,6 +19,7 @@ meta:
             <a-radio-button value="好评">好评</a-radio-button>
             <a-radio-button value="废话">废话</a-radio-button>
             <a-radio-button value="差评">差评</a-radio-button>
+            <a-radio-button value="爬虫">爬虫</a-radio-button>
           </a-radio-group>
           <a-button @click="handleAdd" size="small" :disabled="!isAdmin" type="primary">
             新增评论

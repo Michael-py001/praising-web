@@ -15,7 +15,7 @@ export default [
     title: '类型',
     dataIndex: 'type',
     key: 'type',
-    width: 80,
+    width: 260,
     align: 'center',
   },
   {
@@ -23,13 +23,6 @@ export default [
     dataIndex: 'enable',
     key: 'enable',
     width: 80,
-    align: 'center',
-  },
-  {
-    title: '时间',
-    dataIndex: 'createdAt',
-    key: 'createdAt',
-    width: 180,
     align: 'center',
   },
   {
