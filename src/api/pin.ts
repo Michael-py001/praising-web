@@ -14,6 +14,13 @@ export interface KeywordResult {
   value: number;
 }
 
+// 统计结果
+export interface StatisticResult {
+  pinsTotal: number;
+  keywordsTotal: number;
+  templateTotal: number;
+}
+
 export function getKeywords(size: number = 10) {
   return request<Response<KeywordResult[]>>({
     method: 'get',
@@ -89,5 +96,12 @@ export function setTemplate(id: number, isTemplate: boolean) {
       id,
       isTemplate,
     },
+  });
+}
+
+export function getDashboardInfo() {
+  return request<Response<StatisticResult>>({
+    method: 'get',
+    url: '/pin/statistics',
   });
 }

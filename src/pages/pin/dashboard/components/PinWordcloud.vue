@@ -41,6 +41,7 @@
 </template>
 
 <script lang="ts" setup>
+import { onMounted, ref } from 'vue';
 import * as echarts from 'echarts';
 import { getKeywords, KeywordResult, Pin, getPinsByPinIds } from '@/api/pin';
 import 'echarts-wordcloud';
