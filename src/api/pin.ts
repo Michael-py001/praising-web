@@ -12,6 +12,7 @@ export interface KeywordResult {
   authorIds: string[];
   isBlock: boolean;
   value: number;
+  aiReviewResult: boolean;
 }
 
 // 统计结果
@@ -68,6 +69,7 @@ export interface PagePin {
   id: number;
   content: string;
   isTemplate: boolean;
+  aiReviewResult: boolean;
 }
 
 // 分页获取沸点列表
@@ -75,6 +77,7 @@ export function getPinPage(
   page: number = 1,
   pageSize: number = 20,
   isTemplate: boolean,
+  aiReviewResult: boolean,
 ) {
   return request<Response<ListResult<PagePin>>>({
     method: 'get',
@@ -83,6 +86,7 @@ export function getPinPage(
       page,
       pageSize,
       isTemplate,
+      aiReviewResult,
     },
   });
 }

@@ -10,6 +10,9 @@ meta:
     <a-card title="沸点模板管理">
       <template #extra>
         <a-checkbox v-model:checked="store.searchForm.isTemplate">只看模板</a-checkbox>
+        <a-checkbox v-model:checked="store.searchForm.aiReviewResult">
+          AI审核
+        </a-checkbox>
       </template>
       <PageTable />
     </a-card>

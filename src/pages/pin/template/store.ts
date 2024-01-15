@@ -5,6 +5,7 @@ import { PagePin, getPinPage } from '@/api/pin';
 export default defineStore('pinTemplateStore', () => {
   const searchForm = reactive({
     isTemplate: false,
+    aiReviewResult: true,
   });
   const loading = ref(false);
 
@@ -19,7 +20,12 @@ export default defineStore('pinTemplateStore', () => {
 
   function getPageData() {
     loading.value = true;
-    getPinPage(pagination.page, pagination.pageSize, searchForm.isTemplate)
+    getPinPage(
+      pagination.page,
+      pagination.pageSize,
+      searchForm.isTemplate,
+      searchForm.aiReviewResult,
+    )
       .then((res) => {
         pageData.value = res.data.records;
         pagination.total = res.data.total;
