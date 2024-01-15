@@ -14,7 +14,7 @@ meta:
         size="small"
         :pagination="pagination"
         @change="pageChange"
-        :scroll="{ x: 2200 }"
+        :scroll="{ x: 2700 }"
       >
         <template #bodyCell="{ column, record, index }">
           <template v-if="column.key === 'index'">

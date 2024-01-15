@@ -26,6 +26,21 @@ export default [
     key: 'contribution',
   },
   {
+    title: '连续签到',
+    dataIndex: 'consecutiveDays',
+    key: 'consecutiveDays',
+  },
+  {
+    title: '总计签到',
+    dataIndex: 'totalDays',
+    key: 'totalDays',
+  },
+  {
+    title: '矿石总数',
+    dataIndex: 'totalMoney',
+    key: 'totalMoney',
+  },
+  {
     title: '文章赞数',
     dataIndex: 'userArticleLike',
     key: 'userArticleLike',
