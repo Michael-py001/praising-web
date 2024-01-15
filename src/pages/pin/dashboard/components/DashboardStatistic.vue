@@ -1,7 +1,11 @@
 <template>
   <div class="bg-white px-6 py-6">
     <a-space :size="isMobile ? 5 : 30">
-      <a-statistic title="爬取总数" :value="store.statistics.pinsTotal" />
+      <a-statistic title="AI审核通过" :value="store.statistics.aiReviewResultTotal" />
+      <a-divider type="vertical" />
+      <a-statistic title="AI已审核" :value="store.statistics.aiReviewTotal" />
+      <a-divider type="vertical" />
+      <a-statistic title="沸点总数" :value="store.statistics.pinsTotal" />
       <a-divider type="vertical" />
       <a-statistic title="关键词总数" :value="store.statistics.keywordsTotal" />
       <a-divider type="vertical" />

@@ -9,6 +9,8 @@ export default defineStore('pinDashboardStore', () => {
     pinsTotal: 0,
     keywordsTotal: 0,
     templateTotal: 0,
+    aiReviewTotal: 0,
+    aiReviewResultTotal: 0,
   });
 
   function getPageData() {
@@ -18,6 +20,8 @@ export default defineStore('pinDashboardStore', () => {
         statistics.pinsTotal = res.data.pinsTotal;
         statistics.keywordsTotal = res.data.keywordsTotal;
         statistics.templateTotal = res.data.templateTotal;
+        statistics.aiReviewTotal = res.data.aiReviewTotal;
+        statistics.aiReviewResultTotal = res.data.aiReviewResultTotal;
       })
       .finally(() => {
         loading.value = false;

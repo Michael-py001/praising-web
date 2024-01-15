@@ -20,6 +20,8 @@ export interface StatisticResult {
   pinsTotal: number;
   keywordsTotal: number;
   templateTotal: number;
+  aiReviewTotal: number;
+  aiReviewResultTotal: number;
 }
 
 export function getKeywords(size: number = 10) {
