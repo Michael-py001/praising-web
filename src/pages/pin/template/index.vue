@@ -37,4 +37,12 @@ watch(
     store.getPageData();
   },
 );
+
+watch(
+  () => store.searchForm.aiReviewResult,
+  () => {
+    store.pagination.page = 1;
+    store.getPageData();
+  },
+);
 </script>
