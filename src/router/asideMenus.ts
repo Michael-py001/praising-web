@@ -58,7 +58,7 @@ export default [
     icon: AlertFilled,
     children: [
       {
-        path: '/pin/articleStar',
+        path: '/pin/dashboard',
         title: '沸点概览',
       },
       {
