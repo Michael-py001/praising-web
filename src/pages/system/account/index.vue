@@ -29,9 +29,11 @@ meta:
                 <a-avatar :src="record.avatar" :size="24" />
               </a-badge>
               <a-avatar v-else :src="record.avatar" :size="24" />
-              <a :href="`https://juejin.cn/user/${record.userId}`" target="_blank">
-                {{ record.username }} (ID: {{ record.id }})
-              </a>
+              <a-badge :count="record.unreadMessage" :offset="[6, 0]">
+                <a :href="`https://juejin.cn/user/${record.userId}`" target="_blank">
+                  {{ record.username }} (ID: {{ record.id }})
+                </a>
+              </a-badge>
             </a-space>
           </template>
           <template v-else-if="column.key === 'type'">
