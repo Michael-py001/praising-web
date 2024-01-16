@@ -105,3 +105,26 @@ export function deleteAccount(id: number) {
     },
   });
 }
+
+export interface Message {
+  type: string;
+  avatar: string;
+  name: string;
+  userUrl: string;
+  contentUrl?: string;
+  comment?: string;
+  reference?: string;
+  title: string;
+  time: number;
+}
+
+// 获取账号系统消息
+export function findMessage(id: number) {
+  return request<Response<Message[]>>({
+    method: 'get',
+    url: '/account/findMessage',
+    params: {
+      id,
+    },
+  });
+}

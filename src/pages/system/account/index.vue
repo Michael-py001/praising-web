@@ -29,11 +29,13 @@ meta:
                 <a-avatar :src="record.avatar" :size="24" />
               </a-badge>
               <a-avatar v-else :src="record.avatar" :size="24" />
-              <a-badge :count="record.unreadMessage" :offset="[6, 0]">
-                <a :href="`https://juejin.cn/user/${record.userId}`" target="_blank">
-                  {{ record.username }} (ID: {{ record.id }})
-                </a>
-              </a-badge>
+              <a :href="`https://juejin.cn/user/${record.userId}`" target="_blank">
+                {{ record.username }}
+              </a>
+              <span class="text-xs">ID: {{ record.id }}</span>
+              <a @click="handleMessage(record)">
+                <a-badge :count="record.unreadMessage"></a-badge>
+              </a>
             </a-space>
           </template>
           <template v-else-if="column.key === 'type'">
@@ -47,6 +49,10 @@ meta:
             <a-tag color="green">{{ record[column.key] }}</a-tag>
           </template>
           <template v-else-if="column.key === 'action'">
+            <a-button size="small" type="link" @click="handleMessage(record)">
+              消息
+            </a-button>
+            <a-divider type="vertical" />
             <a-button
               size="small"
               type="link"
@@ -64,7 +70,7 @@ meta:
                 @click="handleVisitAccount(record.id)"
                 :disabled="!isLocalhost && !isAdmin"
               >
-                访问此账号
+                访问
               </a-button>
             </a-tooltip>
             <a-divider type="vertical" />
@@ -106,6 +112,7 @@ meta:
       </a-form-item>
     </a-form>
   </a-modal>
+  <MessageBox ref="messageBox" @afterVisibleChange="fetchData()" />
 </template>
 
 <script setup lang="ts">
@@ -125,6 +132,9 @@ import {
 } from '@/api/account';
 import columns from './columns';
 import useUserStore from '@/stores/user';
+import MessageBox from './components/MessageBox.vue';
+
+const messageBox = ref();
 
 const userStore = useUserStore();
 
@@ -196,6 +206,11 @@ function handleDelete(id: number) {
     }
     fetchData();
   });
+}
+
+// 查看消息
+function handleMessage(record: UserInfo) {
+  messageBox.value.showDrawer(record.id);
 }
 
 onMounted(() => {

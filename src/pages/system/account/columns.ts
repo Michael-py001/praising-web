@@ -11,7 +11,7 @@ export default [
     title: '头像 / 用户 / ID',
     dataIndex: 'username',
     key: 'username',
-    width: 240,
+    width: 260,
     align: 'left',
     fixed: 'left',
   },
@@ -105,7 +105,7 @@ export default [
   {
     title: '操作',
     key: 'action',
-    width: 230,
+    width: 250,
     align: 'center',
     fixed: 'right',
   },
