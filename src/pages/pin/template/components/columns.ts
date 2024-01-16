@@ -15,7 +15,7 @@ export default [
     title: '操作',
     dataIndex: 'action',
     key: 'action',
-    width: 80,
+    width: 150,
     align: 'center',
   },
 ];

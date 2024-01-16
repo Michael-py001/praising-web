@@ -54,7 +54,7 @@ const chartRef = ref<HTMLDivElement>();
 let chart: echarts.ECharts;
 
 onMounted(async () => {
-  const { data } = await getKeywords(400);
+  const { data } = await getKeywords(1000);
   keywords.value = data;
 
   const keywordsData = keywords.value.map((item) => ({

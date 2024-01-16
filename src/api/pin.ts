@@ -105,6 +105,17 @@ export function setTemplate(id: number, isTemplate: boolean) {
   });
 }
 
+export function setAiReviewResult(id: number) {
+  return request<Response<boolean>>({
+    method: 'get',
+    url: '/pin/setAiReviewResult',
+    params: {
+      id,
+      aiReviewResult: false,
+    },
+  });
+}
+
 export function getDashboardInfo() {
   return request<Response<StatisticResult>>({
     method: 'get',
