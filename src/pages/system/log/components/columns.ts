@@ -27,6 +27,7 @@ export default [
   {
     title: '记录',
     dataIndex: 'record',
+    width: 150,
     key: 'record',
   },
   {
