@@ -30,7 +30,7 @@
     </a-form-item>
 
     <a-button class="w-full" type="primary" html-type="submit" :loading="loading">
-      {{ loading ? '正在攻入掘金，请耐心等待...' : '登录' }}
+      {{ loading ? loadingText : '登录' }}
     </a-button>
   </a-form>
 </template>
@@ -40,7 +40,8 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
 import { notification } from 'ant-design-vue';
 import { useStorage } from '@vueuse/core';
 import useUserStore from '@/stores/user';
-import { login } from '@/api/login';
+
+const { VITE_APP_BASE_URL } = import.meta.env;
 
 const props = defineProps<{
   shareId: string;
@@ -54,6 +55,7 @@ const formState = useStorage('formState', {
 const userStore = useUserStore();
 
 const loading = ref(false);
+const loadingText = ref('正在登录，请耐心等待...');
 
 function onSubmit() {
   loading.value = true;
@@ -62,18 +64,40 @@ function onSubmit() {
     password: formState.value.password,
     shareId: props.shareId,
   };
-  login(params)
-    .then((res) => {
-      userStore.handleLogin(res.data);
-    })
-    .catch((err) => {
-      notification.error({
-        message: '登录失败',
-        description: err.message,
-      });
-    })
-    .finally(() => {
-      loading.value = false;
+
+  const url = new URL(
+    `${VITE_APP_BASE_URL}user/login?${new URLSearchParams(params).toString()}`,
+  );
+
+  const eventSource = new EventSource(url);
+  eventSource.onmessage = (event) => {
+    const data = JSON.parse(event.data);
+    switch (data.type) {
+      case 'end':
+        userStore.handleLogin(data.data);
+        eventSource.close();
+        loading.value = false;
+        break;
+      case 'error':
+        notification.error({
+          message: '登录失败',
+          description: data.message,
+        });
+        loading.value = false;
+        eventSource.close();
+        break;
+      default:
+        loadingText.value = data.message;
+        break;
+    }
+  };
+  eventSource.onerror = () => {
+    loading.value = false;
+    notification.error({
+      message: '登录失败',
+      description: '网络错误，请稍后重试',
     });
+    eventSource.close();
+  };
 }
 </script>
