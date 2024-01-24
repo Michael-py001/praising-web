@@ -65,9 +65,9 @@ function onSubmit() {
     shareId: props.shareId,
   };
 
-  const url = new URL(
-    `${VITE_APP_BASE_URL}user/login?${new URLSearchParams(params).toString()}`,
-  );
+  const url = `${VITE_APP_BASE_URL}user/login?${new URLSearchParams(
+    params,
+  ).toString()}`;
 
   const eventSource = new EventSource(url);
   eventSource.onmessage = (event) => {
